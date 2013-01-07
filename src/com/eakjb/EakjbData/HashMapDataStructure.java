@@ -53,5 +53,9 @@ public class HashMapDataStructure implements IDataStructure {
 	public HashMap<String, IDataObject> getMap() {
 		return map;
 	}
+	@Override
+	public boolean isStructure() {
+		return true;
+	}
 
 }

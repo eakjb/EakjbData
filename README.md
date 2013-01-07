@@ -17,7 +17,6 @@ problems leading to the development of EakjbData.
 DataInterfaces - Provide methods for working with raw data by handling caching and parsing.
 DataAdapters - Convert raw data (XML, YAML, SQL, etc...) to DataStructures
 DataStructure - Attribute-based data tree
-DataField - Contains data within an attribute which may be a primitive (likely a java.lang.String) or a DataStructure
 
 **TODO:**
 	- Update javadoc comments for
@@ -28,7 +27,7 @@ DataField - Contains data within an attribute which may be a primitive (likely a
 		- DataAdapter
 		- TextDataObject
 		- Update try/catch to be specific
-		- Add queries
+		- Finish queries
 	- Add more DataAdapters
 		- YAML
 		- SQL

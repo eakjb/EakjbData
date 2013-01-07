@@ -13,4 +13,9 @@ public class TextDataObject implements IDataObject {
 		return text;
 	}
 
+	@Override
+	public boolean isStructure() {
+		return false;
+	}
+
 }
