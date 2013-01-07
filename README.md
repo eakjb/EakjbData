@@ -1,9 +1,8 @@
 EakjbData
-=========
-
 -------------------------------------------------------------------------------------------------------------
-NOTE:
-This README is current as of 01/06/2013 but is subject to change and may become outdated later in development.
+NOTE: This README is current as of 01/06/2013 but is subject to change and may become outdated later in development.
+
+Information
 -------------------------------------------------------------------------------------------------------------
 **Purpose:**
 EakjbData is a Java-based framework designed to create easy access to multiple types of Data in a consistent format.
