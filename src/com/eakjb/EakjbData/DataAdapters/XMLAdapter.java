@@ -39,7 +39,7 @@ public class XMLAdapter extends DataAdapter {
 		HashMapDataStructure top = new HashMapDataStructure(logger);
 		for (int i=0; i<nodes.getLength(); i++) {
 			Node entry = nodes.item(i);
-			logger.log("Processing object: "+entry.getNodeName()+", "+entry.getTextContent());
+			// Used for debugging logger.log("Processing object: "+entry.getNodeName()+", "+entry.getTextContent());
 			String oid=entry.getNodeName();
 			String id =oid;
 			int idi = 1;
@@ -47,7 +47,7 @@ public class XMLAdapter extends DataAdapter {
 				id=oid+idi;
 				idi++;
 			}
-			if (entry.hasChildNodes()) {
+			if (entry.hasChildNodes() && entry.getChildNodes().getLength() > 1) {
 				top.set(id, processLayer(entry.getChildNodes()));
 			} else {
 				top.set(id, new TextDataObject(entry.getTextContent()));

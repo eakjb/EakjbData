@@ -24,7 +24,7 @@ public class Tester {
 			HashMapDataStructure doc = (HashMapDataStructure) o;
 			log.log("Cast done.");
 			log.log("HashMap: "+doc.getMap().toString());
-			log.log("Targeted Value: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("f").getTextValue());
+			log.log("Targeted Value: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("h").getTextValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
