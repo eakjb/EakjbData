@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<test>
+	<a>1</a>
+	<b>2</b>
+	<c>3</c>
+	<c>4</c>
+	<c>5</c>
+	<d>6</d>
+	<e>
+		<f>1</f>
+		<g>2</g>
+		<h>3</h>
+		<h>4</h>
+	</e>
+</test>
