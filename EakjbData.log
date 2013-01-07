@@ -1,11 +1,36 @@
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Program running...
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Created new Raw Local Loader.
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Created new Data Interface.
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Loaded new data.
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Returning path...
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Loading local data as string from test.xml
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Converting String to XML...
-[Sun Jan 06 20:53:58 MST 2013] [WARNING] HashMapDataStructure getTextValue() not implemented yet!
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Object text value: Multiple objects.
-[Sun Jan 06 20:53:58 MST 2013] [WARNING] Trying structure...
-[Sun Jan 06 20:53:58 MST 2013] [DEBUG] Cast done.
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Program running...
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Created new Raw Local Loader.
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Created new Data Interface.
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Loaded new data.
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Returning path...
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Loading local data as string from test.xml
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Converting String to XML...
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: test, 1234561234
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: a, 1
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 1
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: b, 2
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 2
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: c, 3
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 3
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: c, 4
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 4
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: c, 5
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 5
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: d, 6
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 6
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: e, 1234
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: f, 1
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 1
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: g, 2
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 2
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: h, 3
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 3
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: h, 4
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Processing object: #text, 4
+[Sun Jan 06 21:14:24 MST 2013] [WARNING] HashMapDataStructure getTextValue() not implemented yet!
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Object text value: Multiple objects.
+[Sun Jan 06 21:14:24 MST 2013] [WARNING] Trying structure...
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Cast done.
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] HashMap: {test=com.eakjb.EakjbData.HashMapDataStructure@7c6572b}
+[Sun Jan 06 21:14:24 MST 2013] [WARNING] HashMapDataStructure getTextValue() not implemented yet!
+[Sun Jan 06 21:14:24 MST 2013] [DEBUG] Targeted Value: Multiple objects.

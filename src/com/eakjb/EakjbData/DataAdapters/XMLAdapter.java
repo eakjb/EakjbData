@@ -23,6 +23,7 @@ public class XMLAdapter extends DataAdapter {
 
 	@Override
 	public IDataObject rawToObject(String data) throws Exception {
+		data=stripString(data);
 		Document dom = loadXMLFromString(data);
 		IDataStructure top = processLayer(dom.getChildNodes());		
 		return top;
@@ -38,7 +39,8 @@ public class XMLAdapter extends DataAdapter {
 		HashMapDataStructure top = new HashMapDataStructure(logger);
 		for (int i=0; i<nodes.getLength(); i++) {
 			Node entry = nodes.item(i);
-			String oid=entry.getNodeValue();
+			logger.log("Processing object: "+entry.getNodeName()+", "+entry.getTextContent());
+			String oid=entry.getNodeName();
 			String id =oid;
 			int idi = 1;
 			while (top.getMap().containsKey(id)) {

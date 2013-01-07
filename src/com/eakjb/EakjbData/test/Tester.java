@@ -1,8 +1,8 @@
 package com.eakjb.EakjbData.test;
 
 import com.eakjb.EakjbData.DataInterface;
+import com.eakjb.EakjbData.HashMapDataStructure;
 import com.eakjb.EakjbData.IDataObject;
-import com.eakjb.EakjbData.IDataStructure;
 import com.eakjb.EakjbData.RawLocalLoader;
 import com.eakjb.EakjbData.DataAdapters.XMLAdapter;
 import com.eakjb.EakjbData.Logging.ErrorLevel;
@@ -21,9 +21,10 @@ public class Tester {
 			IDataObject o = i.getData();
 			log.log("Object text value: "+o.getTextValue());
 			log.log("Trying structure...",ErrorLevel.WARNING);
-			IDataStructure doc = (IDataStructure) o;
+			HashMapDataStructure doc = (HashMapDataStructure) o;
 			log.log("Cast done.");
-			log.log(doc.get("test").getTextValue());
+			log.log("HashMap: "+doc.getMap().toString());
+			log.log("Targeted Value: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("f").getTextValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

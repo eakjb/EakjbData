@@ -12,4 +12,9 @@ public abstract class DataAdapter implements IDataAdapter {
 	public DataAdapter() {
 		this(new DummyLogger());
 	}
+	public String stripString(String s) {
+		s=s.replaceAll("\n", "");
+		s=s.replaceAll("\t", "");
+		return s;
+	}
 }
