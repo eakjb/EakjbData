@@ -1,8 +1,10 @@
 package com.eakjb.EakjbData.test;
 
 import com.eakjb.EakjbData.DataInterface;
+import com.eakjb.EakjbData.DataStructureQuery;
 import com.eakjb.EakjbData.HashMapDataStructure;
 import com.eakjb.EakjbData.IDataObject;
+import com.eakjb.EakjbData.IDataStructure;
 import com.eakjb.EakjbData.RawLocalLoader;
 import com.eakjb.EakjbData.DataAdapters.XMLAdapter;
 import com.eakjb.EakjbData.Logging.ErrorLevel;
@@ -24,7 +26,11 @@ public class Tester {
 			HashMapDataStructure doc = (HashMapDataStructure) o;
 			log.log("Cast done.");
 			log.log("HashMap: "+doc.getMap().toString());
-			log.log("Targeted Value: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("h").getTextValue());
+			log.log("Manuel Value Retrieval: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("h").getTextValue(), ErrorLevel.INFO);
+			log.log("Using query retrieval...");
+			DataStructureQuery q = new DataStructureQuery(doc, "a");
+			IDataStructure result = q.execute();
+			log.log(result.get("a").getTextValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

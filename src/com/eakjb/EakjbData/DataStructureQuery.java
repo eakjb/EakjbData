@@ -3,27 +3,21 @@ package com.eakjb.EakjbData;
 import java.util.Iterator;
 
 public class DataStructureQuery implements IQuery {
-	
+
 	private IDataStructure structure;
 	private String type;
 	private String value;
-	private boolean multiple;
-	
-	public DataStructureQuery(IDataStructure s,String type,String value,boolean multiple) {
+
+	public DataStructureQuery(IDataStructure s,String type,String value) {
 		this.structure=s;
 		this.type=type;
 		this.value=value;
-		this.multiple=multiple;
 	}
-	
-	public DataStructureQuery(IDataStructure s, String type,boolean multiple) {
-		this(s,type,"", multiple);
-	}
-	
+
 	public DataStructureQuery(IDataStructure s, String type) {
-		this(s,type,false);
+		this(s,type,"");
 	}
-	
+
 	private IDataStructure queryLevel(IDataStructure s) {
 		IDataStructure result = null;
 		Iterator<String> i = s.getKeys().iterator();
@@ -32,22 +26,41 @@ public class DataStructureQuery implements IQuery {
 			IDataObject o = s.get(key);
 			if (key.equals(type)) {
 				if (o.getTextValue().equals(value)||value==null||value=="") {
-					//TODO Unique ID, add to result structure, handle IDataStructures, handle multiples, return
+					if (result==null) {
+						result=new HashMapDataStructure();
+					}
+					String id=key;
+					int idi = 1;
+					while (result.containsKey(id)) {
+						id=key+idi;
+						idi++;
+					}
+					result.set(id, o);
 				}
-			if (o.isStructure()) {
-				queryLevel((IDataStructure) o);
 			} else {
-				
-			}
+				if (o.isStructure()) {
+					IDataStructure sub = queryLevel((IDataStructure) o);
+					if (sub!=null) {
+						if (result==null) {
+							result=new HashMapDataStructure();
+						}
+						String id=key;
+						int idi = 1;
+						while (result.containsKey(id)) {
+							id=key+idi;
+							idi++;
+						}
+						result.set(id, sub);						
+					}
+				}
 			}
 		}
 		return result;
 	}
-	
+
 	@Override
-	public IDataObject execute() {
-		// TODO Auto-generated method stub
-		return null;
+	public IDataStructure execute() {
+		return queryLevel(structure);
 	}
 
 }

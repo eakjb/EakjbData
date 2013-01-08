@@ -57,5 +57,17 @@ public class HashMapDataStructure implements IDataStructure {
 	public boolean isStructure() {
 		return true;
 	}
+	@Override
+	public boolean containsObject(IDataObject o) {
+		return map.containsValue(o);
+	}
+	@Override
+	public boolean containsKey(String key) {
+		return map.containsKey(key);
+	}
+	@Override
+	public int size() {
+		return map.size();
+	}
 
 }
