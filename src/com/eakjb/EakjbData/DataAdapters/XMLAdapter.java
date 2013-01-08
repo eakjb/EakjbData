@@ -1,11 +1,18 @@
 package com.eakjb.EakjbData.DataAdapters;
 
 import java.io.ByteArrayInputStream;
+import java.io.StringWriter;
+import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -31,8 +38,31 @@ public class XMLAdapter extends DataAdapter {
 
 	@Override
 	public String objectToRaw(IDataObject data) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (!data.isStructure()) {
+			return data.getTextValue();
+		}
+		
+		IDataStructure structure = (IDataStructure) data;
+		
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		
+		Document doc = docBuilder.newDocument();
+		
+		Element root = doc.createElement(structure.getType());
+		doc.appendChild(root);
+		
+		writeLayerToDOM(structure, root, doc);
+		
+		TransformerFactory transFactory = TransformerFactory.newInstance();
+		Transformer transformer = transFactory.newTransformer();
+		
+		StringWriter buffer = new StringWriter();
+		transformer.transform(new DOMSource(doc),
+		      new StreamResult(buffer));
+		String str = buffer.toString().replace("<", "\n<");
+		
+		return str;
 	}
 	
 	private IDataStructure processLayer(NodeList nodes,String type) {
@@ -48,6 +78,24 @@ public class XMLAdapter extends DataAdapter {
 			}
 		}
 		return top;
+	}
+	
+	private void writeLayerToDOM(IDataStructure s, Element root, Document doc) {
+		Iterator<IDataObject> i = s.getObjects().iterator();
+		
+		while (i.hasNext()) {
+			IDataObject o = i.next();
+			
+			Element e = doc.createElement(o.getType());
+			
+			if (o.isStructure()) {
+				writeLayerToDOM((IDataStructure) o, e, doc);
+			} else {
+				e.appendChild(doc.createTextNode(o.getTextValue()));
+			}
+			
+			root.appendChild(e);
+		}
 	}
 	
 	private Document loadXMLFromString(String xml) throws Exception {

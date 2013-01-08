@@ -14,7 +14,7 @@ import com.eakjb.EakjbData.Logging.Logger;
 public class Tester {
 
 	/**
-	 * @param args Not used
+	 * @param args [xml path] [tag name to query]
 	 */
 	public static void main(String[] args) {
 		try {
@@ -32,6 +32,7 @@ public class Tester {
 			DataInterface i = new DataInterface(new RawLocalLoader(path, log), new XMLAdapter(log));
 			IDataObject s = i.getData();
 			IQuery q = new DataStructureQuery((IDataStructure) s, query);
+			i.dumpData(q.execute());
 			scanLevel(q.execute(), 0);
 		} catch (Exception e) {
 			e.printStackTrace();
