@@ -1,13 +1,14 @@
 package com.eakjb.EakjbData.test;
 
+import java.util.Iterator;
+
 import com.eakjb.EakjbData.DataInterface;
 import com.eakjb.EakjbData.DataStructureQuery;
-import com.eakjb.EakjbData.HashMapDataStructure;
 import com.eakjb.EakjbData.IDataObject;
 import com.eakjb.EakjbData.IDataStructure;
+import com.eakjb.EakjbData.IQuery;
 import com.eakjb.EakjbData.RawLocalLoader;
 import com.eakjb.EakjbData.DataAdapters.XMLAdapter;
-import com.eakjb.EakjbData.Logging.ErrorLevel;
 import com.eakjb.EakjbData.Logging.Logger;
 
 public class Tester {
@@ -18,21 +19,45 @@ public class Tester {
 	public static void main(String[] args) {
 		try {
 			Logger log = new Logger();
-			log.log("Program running...");
-			DataInterface i = new DataInterface(new RawLocalLoader("test.xml",log), new XMLAdapter(log),true,log);
-			IDataObject o = i.getData();
-			log.log("Object text value: "+o.getTextValue());
-			log.log("Trying structure...",ErrorLevel.WARNING);
-			HashMapDataStructure doc = (HashMapDataStructure) o;
-			log.log("Cast done.");
-			log.log("HashMap: "+doc.getMap().toString());
-			log.log("Manuel Value Retrieval: " + ((HashMapDataStructure) ((HashMapDataStructure) doc.get("test")).get("e")).get("h").getTextValue(), ErrorLevel.INFO);
-			log.log("Using query retrieval...");
-			DataStructureQuery q = new DataStructureQuery(doc, "a");
-			IDataStructure result = q.execute();
-			log.log(result.get("a").getTextValue());
+			System.out.println("Welcome to scanner app.");
+			System.out.println("-----------------------");
+			String path = "test.xml";
+			if (args.length>0) {
+				path=args[0];
+			}
+			String query = "test";
+			if (args.length>1) {
+				query=args[1];
+			}
+			DataInterface i = new DataInterface(new RawLocalLoader(path, log), new XMLAdapter(log));
+			IDataObject s = i.getData();
+			IQuery q = new DataStructureQuery((IDataStructure) s, query);
+			scanLevel(q.execute(), 0);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+	}
+
+	private static void scanLevel(IDataObject d, int indent) {
+		if (d.isStructure()) {
+			IDataStructure s = (IDataStructure) d;
+			Iterator<IDataObject> i = s.iterator();
+			while (i.hasNext()) {
+				IDataObject o = i.next();
+				System.out.println();
+				for (int it=1;it<=indent;it++) {
+					System.out.print("    ");
+				}
+				if (o.isStructure()) {
+					System.out.print(o.getType()+": ");
+					scanLevel((IDataStructure) o, indent+1);
+				} else {
+					System.out.print(o.getType()+": "+o.getTextValue());
+				}
+			}
+		} else {
+			System.out.println(d.getTextValue());
 		}
 	}
 

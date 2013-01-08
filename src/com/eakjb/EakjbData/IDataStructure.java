@@ -1,6 +1,6 @@
 package com.eakjb.EakjbData;
 
-public interface IDataStructure extends IDataObject {
+public interface IDataStructure extends IDataObject,Iterable<IDataObject> {
 	public Iterable<String> getKeys();
 	public Iterable<IDataObject> getObjects();
 	public void set(String key, IDataObject o);
@@ -9,4 +9,6 @@ public interface IDataStructure extends IDataObject {
 	public boolean containsObject(IDataObject o);
 	public boolean containsKey(String key);
 	public int size();
+	public String genId(String start);
+	public String splitId(String id);
 }

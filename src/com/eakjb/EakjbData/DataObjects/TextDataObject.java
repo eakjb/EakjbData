@@ -4,8 +4,10 @@ import com.eakjb.EakjbData.IDataObject;
 
 public class TextDataObject implements IDataObject {
 	private String text;
-	public TextDataObject(String t) {
-		this.text=t;
+	private String type;
+	public TextDataObject(String type,String text) {
+		this.setType(type);
+		this.text=text;
 	}
 
 	@Override
@@ -16,6 +18,15 @@ public class TextDataObject implements IDataObject {
 	@Override
 	public boolean isStructure() {
 		return false;
+	}
+	
+	@Override
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

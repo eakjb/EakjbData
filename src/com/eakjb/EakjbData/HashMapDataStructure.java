@@ -1,20 +1,23 @@
 package com.eakjb.EakjbData;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 import com.eakjb.EakjbData.Logging.DummyLogger;
 import com.eakjb.EakjbData.Logging.ErrorLevel;
 import com.eakjb.EakjbData.Logging.ILogger;
 
-public class HashMapDataStructure implements IDataStructure {
+public class HashMapDataStructure extends DataStructure {
 	private ILogger logger;
 	private HashMap<String, IDataObject> map;
-	public HashMapDataStructure(ILogger l) {
+	private String type;
+	public HashMapDataStructure(String type, ILogger l) {
 		this.logger=l;
 		this.map=new HashMap<String,IDataObject>();
+		this.type=type;
 	}
-	public HashMapDataStructure() {
-		this(new DummyLogger());
+	public HashMapDataStructure(String type) {
+		this(type, new DummyLogger());
 	}
 	
 	@Override
@@ -68,6 +71,17 @@ public class HashMapDataStructure implements IDataStructure {
 	@Override
 	public int size() {
 		return map.size();
+	}
+	@Override
+	public Iterator<IDataObject> iterator() {
+		return map.values().iterator();
+	}
+	@Override
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

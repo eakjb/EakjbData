@@ -11,4 +11,5 @@ package com.eakjb.EakjbData;
 public interface IDataObject {
 	public String getTextValue();
 	public boolean isStructure();
+	public String getType();
 }

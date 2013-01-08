@@ -25,7 +25,7 @@ public class XMLAdapter extends DataAdapter {
 	public IDataObject rawToObject(String data) throws Exception {
 		data=stripString(data);
 		Document dom = loadXMLFromString(data);
-		IDataStructure top = processLayer(dom.getChildNodes());		
+		IDataStructure top = processLayer(dom.getChildNodes(),"XMLTree");		
 		return top;
 	}
 
@@ -35,22 +35,16 @@ public class XMLAdapter extends DataAdapter {
 		return null;
 	}
 	
-	private IDataStructure processLayer(NodeList nodes) {
-		HashMapDataStructure top = new HashMapDataStructure(logger);
+	private IDataStructure processLayer(NodeList nodes,String type) {
+		HashMapDataStructure top = new HashMapDataStructure(type, logger);
 		for (int i=0; i<nodes.getLength(); i++) {
 			Node entry = nodes.item(i);
 			// Used for debugging logger.log("Processing object: "+entry.getNodeName()+", "+entry.getTextContent());
-			String oid=entry.getNodeName();
-			String id =oid;
-			int idi = 1;
-			while (top.getMap().containsKey(id)) {
-				id=oid+idi;
-				idi++;
-			}
+			String id = top.genId(entry.getNodeName());
 			if (entry.hasChildNodes() && entry.getChildNodes().getLength() > 1) {
-				top.set(id, processLayer(entry.getChildNodes()));
+				top.set(id, processLayer(entry.getChildNodes(),entry.getNodeName()));
 			} else {
-				top.set(id, new TextDataObject(entry.getTextContent()));
+				top.set(id, new TextDataObject(entry.getNodeName(), entry.getTextContent()));
 			}
 		}
 		return top;
