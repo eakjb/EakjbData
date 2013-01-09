@@ -30,6 +30,7 @@ public class XMLAdapter extends DataAdapter {
 
 	@Override
 	public IDataObject rawToObject(String data) throws Exception {
+		logger.log("Converting xml to object...");
 		data=stripString(data);
 		Document dom = loadXMLFromString(data);
 		IDataStructure top = processLayer(dom.getChildNodes(),"XMLTree");		
@@ -38,6 +39,7 @@ public class XMLAdapter extends DataAdapter {
 
 	@Override
 	public String objectToRaw(IDataObject data) throws Exception {
+		logger.log("Converting object to xml...");
 		if (!data.isStructure()) {
 			return data.getTextValue();
 		}

@@ -109,6 +109,7 @@ public class DataInterface implements IDataInterface {
 	 * Loads and returns data bypassing the cache.  Specific to subclasses.
 	 */
 	public IDataObject loadData() throws Exception {
+		logger.log("Loadind data...");
 		return adapter.rawToObject(loader.loadString());
 	}
 	
@@ -124,7 +125,10 @@ public class DataInterface implements IDataInterface {
 		} else {
 			logger.log("Loaded new data.");
 			IDataObject data = loadData();
-			cacheLoaded=true;
+			if (cached) {
+				cache=data;
+				cacheLoaded=true;				
+			}
 			return data;
 		}
 	}
@@ -166,6 +170,7 @@ public class DataInterface implements IDataInterface {
 	 * Writes data; specific to subclasses
 	 */
 	public void writeData(IDataObject data) throws Exception {
+		logger.log("Writing data...");
 		loader.writeString(adapter.objectToRaw(data));
 	}
 	
