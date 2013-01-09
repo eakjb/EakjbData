@@ -1,0 +1,6 @@
+Alpha 1.1.0.2
+	* Fixed critical error with caching
+	* Added more logging to DataInterface
+	+ Added CHANGELOG.txt
+Alpha 1.0.0.0
+	+ Basic functionality and conversion from com.grademaster.data

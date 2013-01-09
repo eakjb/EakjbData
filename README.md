@@ -1,4 +1,4 @@
-EakjbData
+EakjbData - **Version**: Alpha_1.1.0.2
 -------------------------------------------------------------------------------------------------------------
 NOTE: This README is current as of 01/06/2013 but is subject to change and may become outdated later in development.
 
