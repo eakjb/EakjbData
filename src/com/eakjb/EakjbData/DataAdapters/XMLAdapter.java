@@ -33,7 +33,7 @@ public class XMLAdapter extends DataAdapter {
 		logger.log("Converting xml to object...");
 		data=stripString(data);
 		Document dom = loadXMLFromString(data);
-		IDataStructure top = processLayer(dom.getChildNodes(),"XMLTree");		
+		IDataStructure top = processLayer(dom.getChildNodes(),"root");		
 		return top;
 	}
 
@@ -51,10 +51,13 @@ public class XMLAdapter extends DataAdapter {
 		
 		Document doc = docBuilder.newDocument();
 		
-		Element root = doc.createElement(structure.getType());
-		doc.appendChild(root);
-		
-		writeLayerToDOM(structure, root, doc);
+		if (structure.getType().equals("root")) {
+			writeLayerToDOM(structure, doc.getDocumentElement(), doc);
+		} else {
+			Element root = doc.createElement(structure.getType());
+			doc.appendChild(root);
+			writeLayerToDOM(structure, root, doc);
+		}
 		
 		TransformerFactory transFactory = TransformerFactory.newInstance();
 		Transformer transformer = transFactory.newTransformer();
