@@ -3,6 +3,7 @@ package com.eakjb.EakjbData;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import com.eakjb.EakjbData.DataObjects.TextDataObject;
 import com.eakjb.EakjbData.Logging.DummyLogger;
 import com.eakjb.EakjbData.Logging.ErrorLevel;
 import com.eakjb.EakjbData.Logging.ILogger;
@@ -82,6 +83,10 @@ public class HashMapDataStructure extends DataStructure {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	@Override
+	public void set(String key, String value) {
+		set(key,new TextDataObject(key, value));	
 	}
 
 }
