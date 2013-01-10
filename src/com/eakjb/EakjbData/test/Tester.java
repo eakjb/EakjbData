@@ -2,6 +2,7 @@ package com.eakjb.EakjbData.test;
 
 import java.util.Iterator;
 
+import com.eakjb.EakjbData.AttributeQuery;
 import com.eakjb.EakjbData.DataInterface;
 import com.eakjb.EakjbData.DataStructureQuery;
 import com.eakjb.EakjbData.IDataObject;
@@ -25,14 +26,23 @@ public class Tester {
 			if (args.length>0) {
 				path=args[0];
 			}
-			String query = "test";
+			String type = "e";
 			if (args.length>1) {
-				query=args[1];
+				type=args[1];
+			}
+			String attr = "f";
+			if (args.length>1) {
+				attr=args[2];
+			}
+			String value = "5";
+			if (args.length>1) {
+				type=args[3];
 			}
 			DataInterface i = new DataInterface(new RawLocalLoader(path, log), new XMLAdapter(log));
 			IDataObject s = i.getData();
-			IQuery q = new DataStructureQuery((IDataStructure) s, query);
-			i.dumpData(q.execute());
+			IQuery q = new DataStructureQuery((IDataStructure) s,type);
+			//IQuery q = new AttributeQuery((IDataStructure) s,type,attr,value,log);
+			//i.dumpData(q.execute());
 			scanLevel(q.execute(), 0);
 		} catch (Exception e) {
 			e.printStackTrace();

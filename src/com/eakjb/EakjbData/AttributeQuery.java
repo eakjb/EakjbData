@@ -1,24 +1,29 @@
 package com.eakjb.EakjbData;
 
-public class AttributeQuery implements IQuery {
-	private IDataStructure structure;
-	private String type;
-	private String value;
-	public AttributeQuery(IDataStructure structure, String type, String attribute, String value) {
-		this.structure=structure;
-		this.type=type;
-		this.value=value;
+
+import com.eakjb.EakjbData.DataObjects.TextDataObject;
+import com.eakjb.EakjbData.Logging.DummyLogger;
+import com.eakjb.EakjbData.Logging.ILogger;
+
+public class AttributeQuery extends Query {
+	
+	private String attr;
+	
+	public AttributeQuery(IDataStructure s,String type,String attr,IDataObject value,ILogger logger) {
+		super(s,type,value,logger);
+		this.attr=attr;
+	}
+	public AttributeQuery(IDataStructure s,String type,String attr,IDataObject value) {
+		this(s,type,attr,value,new DummyLogger());
+	}
+	public AttributeQuery(IDataStructure s,String type,String attr,String value,ILogger logger) {
+		this(s,type,attr,new TextDataObject("AttrQuery",value),logger);
+	}
+	public AttributeQuery(IDataStructure s,String type,String attr,String value) {
+		this(s,type,attr,value,new DummyLogger());
 	}
 	@Override
-	public IDataObject execute() {
-		// TODO Auto-generated method stub
-		return null;
+	protected boolean isMatch(String key, IDataObject o) {
+		return key.equals(type)&&o.isStructure()&&((IDataStructure) o).get(attr).equals(value);
 	}
-
-	@Override
-	public IDataObject execute(boolean tree) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
