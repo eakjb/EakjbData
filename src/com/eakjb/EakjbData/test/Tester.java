@@ -26,22 +26,22 @@ public class Tester {
 			if (args.length>0) {
 				path=args[0];
 			}
-			String type = "e";
+			String type = "test";
 			if (args.length>1) {
 				type=args[1];
 			}
-			String attr = "f";
+			String attr = "e";
 			if (args.length>1) {
 				attr=args[2];
 			}
-			String value = "5";
+			String value = "Multiple objects.";
 			if (args.length>1) {
 				type=args[3];
 			}
 			DataInterface i = new DataInterface(new RawLocalLoader(path, log), new XMLAdapter(log));
 			IDataObject s = i.getData();
-			IQuery q = new DataStructureQuery((IDataStructure) s,type);
-			//IQuery q = new AttributeQuery((IDataStructure) s,type,attr,value,log);
+			//IQuery q = new DataStructureQuery((IDataStructure) s,type);
+			IQuery q = new AttributeQuery((IDataStructure) s,type,attr,value,log);
 			//i.dumpData(q.execute());
 			scanLevel(q.execute(), 0);
 		} catch (Exception e) {

@@ -8,7 +8,7 @@ public abstract class Query implements IQuery {
 	
 	protected String type;
 	protected IDataObject value;
-	private ILogger logger;
+	protected ILogger logger;
 	private IDataStructure structure;
 	
 	public Query(IDataStructure s,String type,IDataObject value,ILogger logger) {

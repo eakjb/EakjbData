@@ -24,6 +24,6 @@ public class AttributeQuery extends Query {
 	}
 	@Override
 	protected boolean isMatch(String key, IDataObject o) {
-		return key.equals(type)&&o.isStructure()&&((IDataStructure) o).get(attr).equals(value);
+		return key.equals(type)&&o.isStructure()&&((IDataStructure) o).get(attr).getTextValue().equals(value.getTextValue());
 	}
 }
