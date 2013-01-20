@@ -35,4 +35,14 @@ public class DummyLogger implements ILogger {
 		//Do nothing
 	}
 
+	@Override
+	public String getApp() {
+		return "Dummy";
+	}
+
+	@Override
+	public void setApp(String app) {
+		//Do nothing
+	}
+
 }

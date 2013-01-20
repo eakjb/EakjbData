@@ -5,6 +5,7 @@ package com.eakjb.EakjbData.Logging;
 //Desc: An enum used to determine the severity of a log message
 
 public enum ErrorLevel {
+	SPAM (0),
 	DEBUG (1),
 	INFO (2),
 	WARNING (3),

@@ -16,24 +16,29 @@ public class Logger implements ILogger{
 	private PrintStream err;
 	public final String path;
 	public final PrintStream fileOut;
+	private String app;
 	//Creates a logger with default console output
 	public Logger() throws FileNotFoundException {
 		this("EakjbData.log");
 	}
-	//Creates logger with given output path
 	public Logger(String path) throws FileNotFoundException {
-		this(System.out,System.err,path);
+		this(path,"UnknownApp");
+	}
+	//Creates logger with given output path
+	public Logger(String path, String app) throws FileNotFoundException {
+		this(System.out,System.err,path,app);
 	}
 	//Creates a logger with adaptable output streams
-	public Logger(PrintStream out, PrintStream err, String path) throws FileNotFoundException {
+	public Logger(PrintStream out, PrintStream err, String path, String app) throws FileNotFoundException {
 		this.out=out;
 		this.err=err;
 		this.path=path;
+		this.app=app;
 		this.fileOut=new PrintStream(new FileOutputStream(path));
 	}
 	public void log(Throwable t) {
 		log("Throwable detected.  Printing stack trace...", ErrorLevel.ERROR);
-		log("Message: "+t.getMessage());
+		log("Message: "+t.getMessage(),ErrorLevel.ERROR);
 		t.printStackTrace(err);
 		t.printStackTrace(fileOut);
 	}
@@ -42,7 +47,7 @@ public class Logger implements ILogger{
 	}
 	//Log a message to console or other source later in deveolopment
 	public void log(String message, ErrorLevel level) {
-		String output="["+getDate()+"] ["+level+"] "+message;
+		String output="["+getDate()+"] ["+app+"] ["+level+"] "+message;
 		if (level.error_level > 3) {
 			err.println(output);
 		} else {
@@ -54,5 +59,13 @@ public class Logger implements ILogger{
 	public String getDate() {
 		Date date = new Date();
 		return date.toString();
+	}
+	@Override
+	public String getApp() {
+		return app;
+	}
+	@Override
+	public void setApp(String app) {
+		this.app = app;
 	}
 }

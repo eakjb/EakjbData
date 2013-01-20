@@ -27,4 +27,14 @@ public interface IRawLoader {
 	 * @return String the path the loader uses for IO
 	 */
 	public String getPath();
+	/**
+	 * Gets the IRawProcessor used in the IRawLoader
+	 * @return IRawProcessor The IRaw Processor that is used in the IRawLoader to load Strings
+	 */
+	public IRawProcessor getProcessor();
+	/**
+	 * Sets the IRawProcessor used in the IRawLoader
+	 * @param IRawProcessor The IRaw Processor to be used in the IRawLoader to load Strings
+	 */
+	public void setProcessor(IRawProcessor processor);
 }

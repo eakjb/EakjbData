@@ -4,4 +4,6 @@ public interface ILogger {
 	public void log(String s);
 	public void log(String s, ErrorLevel e);
 	public void log(Throwable t);
+	public String getApp();
+	public void setApp(String app);
 }
